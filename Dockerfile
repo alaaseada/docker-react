@@ -20,4 +20,6 @@ RUN npm run build
 # New From = New stage 
 FROM nginx
 
+EXPOSE 80
+
 COPY --from=0 /home/node/app/build /usr/share/nginx/html
