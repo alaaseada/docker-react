@@ -7,5 +7,18 @@ services:
 before_install:
   - docker build -f Dockerfile.dev -t aseadadocker:docker-react .
 
+# add all needed to run the test suite
 script:
   - docker run -e CI=true aseadadocker:docker-react npm run test 
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-513145416156"
+  bucket_path: "docker-react"
+  on:
+    branch:  master
+  access_key_id: AKIAXO6OZVHOFPXCPVMY
+  secret_access_key: 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
